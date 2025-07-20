@@ -1,0 +1,55 @@
+Optical Phenomena Recognition and Analysis
+
+OPERA/
+├── opera_data/                  # 阶段1: 数据生成引擎
+│   ├── phenomena/               # 基础物理现象模块
+│   │   ├── __init__.py
+│   │   ├── base_phenomenon.py   # (可选) 定义现象的基类
+│   │   ├── diffraction.py       # 衍射模型 (单缝, 圆孔...)
+│   │   ├── interference.py      # 干涉模型 (双缝, 薄膜...)
+│   │   ├── aberrations.py       # 像差模型 (泽尼克多项式)
+│   │   └── ...                  # 未来可扩展其他现象
+│   ├── __init__.py
+│   ├── composition.py           # 现象组合器 (线性叠加, 序贯)
+│   ├── noise_and_distortions.py # 噪声与畸变生成器
+│   ├── label_schema.py          # 定义和验证标签结构 (例如用 Pydantic)
+│   └── generator.py             # 总生成器，调用以上模块，输出 (图像, 标签)
+│
+├── opera_model/                 # 阶段2: 机器学习模型
+│   ├── architecture/            # 模型网络结构
+│   │   ├── __init__.py
+│   │   ├── vit_encoder.py       # Vision Transformer 图像编码器
+│   │   ├── text_decoder.py      # Transformer 文本解码器
+│   │   └── complete_model.py    # 组合编码器和解码器
+│   ├── __init__.py
+│   ├── dataset.py               # 数据加载器 (读取图像和标签，并预处理)
+│   ├── tokenizer.py             # 标签文本化/反文本化工具
+│   └── engine.py                # 训练和评估的核心逻辑 (训练循环)
+│
+├── opera_analysis/              # 阶段3: 分析与应用
+│   ├── __init__.py
+│   ├── predictor.py             # 推理器 (加载模型，预测单张图片)
+│   └── visualizer.py            # 结果可视化 (重构图像, 残差分析, 分解图)
+│
+├── configs/                     # (贯穿各阶段) 配置文件
+│   ├── data_generation_v1.yaml  # 数据集生成参数
+│   ├── model_config_v1.yaml     # 模型结构参数
+│   └── training_config_v1.yaml  # 训练超参数
+│
+├── scripts/                     # (贯穿各阶段) 执行脚本
+│   ├── 1_generate_dataset.py    # 调用 opera_data 生成完整数据集
+│   ├── 2_train_model.py         # 调用 opera_model 开始训练
+│   └── 3_analyze_image.py       # 调用 opera_analysis 分析新图像
+│
+├── data/                        # (自动生成) 存放生成的数据集
+│   └── synthetic_dataset_v1/
+│       ├── images/
+│       └── labels/
+│
+├── results/                     # (自动生成) 存放训练结果
+│   ├── trained_models/
+│   └── analysis_plots/
+│
+├── README.md                    # 项目说明文档
+├── requirements.txt             # 项目依赖库
+└── .gitignore                   # Git忽略规则

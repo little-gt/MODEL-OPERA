@@ -1,0 +1,21 @@
+# ---------------------------------------------------
+# 配置: 图像分析 (版本 1)
+# ---------------------------------------------------
+
+# 要分析的图像的路径。
+# 提示: 你可以从你的数据集中（例如 ./data/synthetic_dataset_v1/images/）
+# 挑选一张图片来进行首次测试。
+image_path: "./data/synthetic_dataset_v1/images/syn_1020610.png" # 请替换为你自己的图片路径
+
+# 训练好的模型检查点的路径。
+# 使用在训练过程中保存的“最佳”模型。
+checkpoint_path: "./cache/checkpoints/run_v1/best_model.pth"
+
+# 用于训练的Tokenizer的路径。
+tokenizer_path: "./results/tokenizers/tokenizer_v1.json"
+
+# 与训练时使用的模型尺寸相匹配 ('small' 或 'base')
+model_size: "base"
+
+# 设备 ('cuda', 'cpu', 'auto')
+device: "cuda"

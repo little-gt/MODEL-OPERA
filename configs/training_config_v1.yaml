@@ -1,0 +1,29 @@
+# ---------------------------------------------------
+# 配置: 模型训练 (版本 1)
+# ---------------------------------------------------
+
+# --- 数据和路径 ---
+# 由 1_generate_dataset.py 生成的数据集的根路径
+data_path: "./data/synthetic_dataset_v1"
+# Tokenizer文件的保存/加载路径
+tokenizer_path: "./results/tokenizers/tokenizer_v1.json"
+# 训练检查点的保存目录
+checkpoint_dir: "./cache/checkpoints/run_v1"
+
+# --- 训练超参数 ---
+# 批量大小
+batch_size: 16
+# 训练轮次
+num_epochs: 20
+# 学习率
+learning_rate: 0.0001
+# 数据加载器的工作线程数 (在Windows上建议为0，Linux上可设为4或更高)
+num_workers: 0
+# 训练集/验证集的划分比例 (例如, 0.9 表示 90% 训练, 10% 验证)
+train_val_split_ratio: 0.9
+
+# --- 模型和设备 ---
+# 'cuda' 或 'cpu'. 'auto' 将自动检测
+device: "auto"
+# 模型尺寸 ('small' 或 'base')
+model_size: "small"
